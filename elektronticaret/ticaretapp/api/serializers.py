@@ -85,6 +85,11 @@ class BascedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Basced
         fields = "__all__"
+
+class BascedCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wishlist
+        fields = ("product",)
         
 class SiteSettingsSerializer(serializers.ModelSerializer):
     class Meta:
