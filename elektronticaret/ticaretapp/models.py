@@ -110,7 +110,12 @@ class Product(models.Model):
         ('Kids', 'Kids'),
         ('Office','Office')
     )
-    name = models.CharField(max_length=100)
+    name = models.CharField(verbose_name = "Ad",max_length=100, unique=True)
+    # verbose_name - ile modelde yazdigimiz name admin panelde Ad kimi gorsenecek
+    # orada 1 ci yazdigimiz ucun verbose_name yazmaya bilerik. amma elaqelendirmelerde ilk yaza bilmediyimiz
+    # ucun verbose_name mutleq verilmelidir.
+    # unique - her title ucun qiymeti ferqli olsun. ada, soyada ve s yerlerde yazilir
+    # editable =False - yazsaq o saheye hec bir yerde qiymet ytazmaq olmur. admin panelde yazsaq admin panelde ona qiymet yazmaq olmayacaq
     image= models.ImageField(upload_to="product_imgs/")
     price = models.FloatField(default=0)
     discount_price = models.FloatField(default=0)
@@ -119,6 +124,8 @@ class Product(models.Model):
     cover_imafe = models.ImageField(upload_to="product_imgs/")
     condition = models.CharField(max_length=10, choices = CONDITIONS, default='Good')
     type = models.CharField(max_length=10, choices = TYPES, default='Family')
+    
+    is_stock = models.BooleanField(default=True)
     
     class Meta:
         ordering= ("-id",)
